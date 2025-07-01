@@ -126,7 +126,7 @@ const Navbar = () => {
   return (
     <NavContainer>
       <Link to="/">
-        <h1>Alex Lonon</h1>
+        <h1>alex lonon</h1>
       </Link>
 
       <MobileToggle onClick={() => setIsOpen(!isOpen)}>
