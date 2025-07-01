@@ -1,6 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './styles/globalStyles';
 import { theme } from './styles/theme';
@@ -12,7 +10,7 @@ import BlogPage from './pages/BlogPage/BlogPage';
 import PortfolioPage from './pages/PortfolioPage/PortfolioPage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import ContactPage from './pages/ContactPage/ContactPage';
-import BlogPost from './components/BlogPost/BlogPost';
+
 import SinglePostPage from './pages/SinglePostPage/SinglePostPage';
 
 function App() {

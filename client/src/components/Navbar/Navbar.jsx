@@ -28,6 +28,18 @@ const NavLinks = styled.div`
   }
 `;
 
+const MobileToggle = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +48,11 @@ const Navbar = () => {
       <Link to="/">
         <h1>Alex Lonon</h1>
       </Link>
-      
+
+      <MobileToggle onClick={() => setIsOpen(!isOpen)}>
+        ☰
+      </MobileToggle>
+
       <NavLinks isOpen={isOpen}>
         <Link to="/">Home</Link>
         <Link to="/blog">Blog</Link>
