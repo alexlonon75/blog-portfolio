@@ -89,7 +89,7 @@ const Footer = () => {
           </SocialLink>
           <SocialLink
             href="/resume.pdf"
-            target="client/public/Joshua_Lonon_Resume_03_2025.pdf"
+            target="_blank"
             $icon="📄"
           >
             Resume
