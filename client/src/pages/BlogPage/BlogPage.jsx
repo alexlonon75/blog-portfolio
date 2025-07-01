@@ -1,7 +1,62 @@
 // pages/BlogPage/BlogPage.jsx
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import BlogPost from '../../components/BlogPost/BlogPost';
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+const BlogContainer = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: ${({ theme }) => theme.fonts.primary};
+    color: ${({ theme }) => theme.colors.text};
+    font-size: 2.5rem;
+
+    &::before {
+      content: '> ';
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+`;
+
+const LoadingMessage = styled.div`
+  text-align: center;
+  padding: 2rem;
+  font-family: ${({ theme }) => theme.fonts.primary};
+  color: ${({ theme }) => theme.colors.primary};
+
+  &::before {
+    content: 'Loading';
+    animation: dots 1.5s infinite;
+  }
+
+  @keyframes dots {
+    0%, 20% { content: 'Loading'; }
+    40% { content: 'Loading.'; }
+    60% { content: 'Loading..'; }
+    80%, 100% { content: 'Loading...'; }
+  }
+`;
+
+const ErrorMessage = styled.div`
+  text-align: center;
+  padding: 2rem;
+  color: ${({ theme }) => theme.colors.error};
+  font-family: ${({ theme }) => theme.fonts.primary};
+  background: ${({ theme }) => theme.colors.surface};
+  border: 1px solid ${({ theme }) => theme.colors.error};
+  border-radius: 8px;
+  margin: 2rem 0;
+
+  &::before {
+    content: '❌ ';
+  }
+`;
 
 const BlogPage = () => {
   const [posts, setPosts] = useState([]);
@@ -43,20 +98,20 @@ const BlogPage = () => {
   console.log('Error state:', error);
 
   return (
-    <div>
-      <h1>Blog</h1>
+    <BlogContainer>
+      <h1>Blog Posts</h1>
       {isLoading ? (
-        <p>Loading posts...</p>
+        <LoadingMessage />
       ) : error ? (
-        <p>Error: {error}</p>
+        <ErrorMessage>{error}</ErrorMessage>
       ) : posts.length > 0 ? (
         posts.map(post => (
           <BlogPost key={post._id || post.id} post={post} />
         ))
       ) : (
-        <p>No posts found. Please check if the backend server is running.</p>
+        <ErrorMessage>No posts found. Please check if the backend server is running.</ErrorMessage>
       )}
-    </div>
+    </BlogContainer>
   );
 };
 
