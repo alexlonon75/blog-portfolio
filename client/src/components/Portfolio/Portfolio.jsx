@@ -1,6 +1,8 @@
 // src/components/Portfolio/Portfolio.jsx
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { api } from '../../services/api';
 
 const PortfolioGrid = styled.div`
   display: grid;
@@ -108,33 +110,65 @@ const TechnologiesContainer = styled.div`
   }
 `;
 
+const LoadingMessage = styled.div`
+  text-align: center;
+  padding: 2rem;
+  color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.mono};
+`;
+
+const ErrorMessage = styled.div`
+  text-align: center;
+  padding: 2rem;
+  color: ${({ theme }) => theme.colors.error || '#ff6b6b'};
+  font-family: ${({ theme }) => theme.fonts.mono};
+`;
+
 const Portfolio = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Automated Security Monitoring Dashboard",
-      description: "To follow the creation of this portfolio site, I decided to use my skills in n8n to create an automated way to know if my site ever goes down. I created a workflow that triggers every 5 minutes, sending a GET request to my frontend. I then process this in a js code node to extract the status code and response time. This data is then sent to my database in MongoDB, and if the parameters do not meet the satisfactory conditions, a discord message is sent alerting me.",
-      image: "/security-dashboard.png",
-      technologies: ["N8N", "Javascript", "HTTP Requests", "MongoDB", "APIs"],
-      preview: "Real-time monitoring system with automated alerts and dashboard visualization. Built with n8n workflows, MongoDB storage, and Discord notifications for comprehensive website uptime monitoring.",
-      status: "Active",
-      dateCreated: "2024",
-      category: "Security & Monitoring"
-    }
-    // Add more projects here
-  ];
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setIsLoading(true);
+        const data = await api.getProjects();
+        setProjects(data);
+      } catch (err) {
+        console.error('Error fetching projects:', err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  if (isLoading) {
+    return <LoadingMessage>Loading projects...</LoadingMessage>;
+  }
+
+  if (error) {
+    return <ErrorMessage>Error loading projects: {error}</ErrorMessage>;
+  }
+
+  if (projects.length === 0) {
+    return <ErrorMessage>No projects found.</ErrorMessage>;
+  }
 
   return (
     <PortfolioGrid>
       {projects.map(project => (
-        <ProjectCard key={project.id}>
-          <ProjectLink to={`/project/${project.id}`}>
+        <ProjectCard key={project._id || project.id}>
+          <ProjectLink to={`/project/${project._id || project.id}`}>
             <ProjectTitle>{project.title}</ProjectTitle>
 
-            {project.image && <ProjectImage src={project.image} alt={project.title} />}
+            {project.imageUrl && <ProjectImage src={project.imageUrl} alt={project.title} />}
 
             <TechnologiesContainer>
-              {project.technologies.map(tech => (
+              {project.technologies && project.technologies.map(tech => (
                 <span key={tech}>#{tech}</span>
               ))}
             </TechnologiesContainer>

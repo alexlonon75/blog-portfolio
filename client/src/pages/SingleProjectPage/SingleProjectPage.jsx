@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { api } from '../../services/api';
 
 const ProjectContainer = styled.article`
   max-width: 1000px;
@@ -167,73 +168,7 @@ const ErrorMessage = styled.div`
   font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
-// Mock project data - in a real app, this would come from an API or database
-const projectsData = {
-    1: {
-      id: 1,
-      title: "Automated Security Monitoring",
-      description: "To follow the creation of this portfolio site, I decided to use my skills in n8n to create an automated way to know if my site ever goes down. I created a workflow that triggers every 5 minutes, sending a GET request to my frontend. I then process this in a js code node to extract the status code and response time. This data is then sent to my database in MongoDB, and if the parameters do not meet the satisfactory conditions, a discord message is sent alerting me.",
-      image: "/security-dashboard.png",
-      technologies: ["N8N", "Javascript", "HTTP Requests", "MongoDB", "APIs"],
-      fullContent: `
-## Project Overview
 
-This automated security monitoring dashboard represents a comprehensive approach to website uptime monitoring and alerting. The system combines workflow automation, real-time data processing, and intelligent alerting to ensure continuous monitoring of web services.
-
-## Technical Implementation
-
-### N8N Workflow Automation
-The core of this system is built using n8n, a powerful workflow automation tool. The workflow is configured to:
-- Trigger automatically every 5 minutes
-- Send HTTP GET requests to the target website
-- Process response data in real-time
-- Store metrics in MongoDB
-- Send alerts when issues are detected
-
-### Data Processing
-The JavaScript code node extracts critical metrics including:
-- HTTP status codes
-- Response times
-- Availability status
-- Error messages and timestamps
-
-### Database Integration
-All monitoring data is stored in MongoDB, providing:
-- Historical uptime data
-- Performance metrics over time
-- Trend analysis capabilities
-- Data persistence for reporting
-
-### Alert System
-The intelligent alerting system:
-- Monitors for failed requests
-- Checks response time thresholds
-- Sends Discord notifications for immediate awareness
-- Provides detailed error information
-
-## Key Features
-
-- **Real-time Monitoring**: Continuous 5-minute interval checks
-- **Automated Alerts**: Instant Discord notifications for downtime
-- **Data Persistence**: Historical data storage in MongoDB
-- **Performance Tracking**: Response time monitoring
-- **Error Analysis**: Detailed error logging and reporting
-
-## Future Enhancements
-
-- Dashboard visualization for historical data
-- Multiple endpoint monitoring
-- SMS/email alert options
-- Performance threshold customization
-- Integration with additional monitoring services
-      `,
-      links: [
-        { title: "GitHub Repository", url: "https://github.com/alexlonon75/n8n/tree/main/Automated%20Security%20Monitoring%20Dashboard" }
-      ],
-      status: "Active",
-      dateCreated: "06/2025"
-    }
-  };
 
 function SingleProjectPage() {
   const { id } = useParams();
@@ -246,16 +181,10 @@ function SingleProjectPage() {
     const fetchProject = async () => {
       try {
         setIsLoading(true);
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        const projectData = projectsData[id];
-        if (!projectData) {
-          throw new Error('Project not found');
-        }
-        
+        const projectData = await api.getProject(id);
         setProject(projectData);
       } catch (err) {
+        console.error('Error fetching project:', err);
         setError(err.message);
       } finally {
         setIsLoading(false);
@@ -299,7 +228,7 @@ function SingleProjectPage() {
       
       <ProjectTitle>{project.title}</ProjectTitle>
       
-      {project.image && <ProjectImage src={project.image} alt={project.title} />}
+      {project.imageUrl && <ProjectImage src={project.imageUrl} alt={project.title} />}
       
       <ProjectMeta>
         <div>

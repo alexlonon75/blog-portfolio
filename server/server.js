@@ -56,6 +56,10 @@ app.get('/health', (req, res) => {
 const postRoutes = require('./routes/api/posts');
 app.use('/api/posts', postRoutes);
 
+// Import and use project routes
+const projectRoutes = require('./routes/api/projects');
+app.use('/api/projects', projectRoutes);
+
 // Import and use security routes
 const securityRoutes = require('./routes/api/security');
 app.use('/api/security', securityRoutes);
