@@ -228,7 +228,7 @@ The intelligent alerting system:
 - Integration with additional monitoring services
       `,
       links: [
-        {}
+        { title: "GitHub Repository", url: "https://github.com/alexlonon75/n8n/tree/main/Automated%20Security%20Monitoring%20Dashboard" }
       ],
       status: "Active",
       dateCreated: "06/2025"
