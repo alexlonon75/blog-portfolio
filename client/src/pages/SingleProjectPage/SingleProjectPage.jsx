@@ -228,11 +228,10 @@ The intelligent alerting system:
 - Integration with additional monitoring services
       `,
       links: [
-        { title: "Live Dashboard", url: "https://alexlonon.com" },
-        { title: "GitHub Repository", url: "#" }
+        {}
       ],
       status: "Active",
-      dateCreated: "2024"
+      dateCreated: "06/2025"
     }
   };
 
