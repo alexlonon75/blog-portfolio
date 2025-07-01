@@ -47,11 +47,11 @@ function SinglePostPage() {
         console.log('SinglePost API_URL:', API_URL);
         console.log('Fetching post URL:', `${API_URL}/api/posts/${id}`);
         const response = await fetch(`${API_URL}/api/posts/${id}`);
-        
+
         if (!response.ok) {
           throw new Error('Post not found');
         }
-        
+
         const data = await response.json();
         setPost(data);
       } catch (err) {
@@ -63,6 +63,14 @@ function SinglePostPage() {
 
     fetchPost();
   }, [id]);
+
+  useEffect(() => {
+    if (post && post.title) {
+      document.title = `Alex Lonon | ${post.title}`;
+    } else {
+      document.title = 'Alex Lonon | Blog Post';
+    }
+  }, [post]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return (

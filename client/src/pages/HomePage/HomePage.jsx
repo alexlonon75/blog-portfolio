@@ -15,7 +15,6 @@ const blink = keyframes`
 
 const HomeContainer = styled.div`
   min-height: 100vh;
-  background: ${({ theme }) => theme.colors.background};
   position: relative;
   overflow: hidden;
 `;
@@ -181,6 +180,7 @@ const HomePage = () => {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
+    document.title = 'Alex Lonon';
     const timer = setTimeout(() => setShowContent(true), 4000);
     return () => clearTimeout(timer);
   }, []);

@@ -66,7 +66,7 @@ const Footer = () => {
             GitHub
           </SocialLink>
           <SocialLink
-            href="https://linkedin.com/in/alexlonon"
+            href="https://www.linkedin.com/in/joshua-lonon-454451239/"
             target="_blank"
             rel="noopener noreferrer"
             $icon="💼"
@@ -82,7 +82,7 @@ const Footer = () => {
             Mastodon
           </SocialLink>
           <SocialLink
-            href="mailto:alex@alexlonon.com"
+            href="mailto:alexlonon75@gmail.com"
             $icon="📧"
           >
             Email

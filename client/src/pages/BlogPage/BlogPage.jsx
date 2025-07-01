@@ -64,6 +64,10 @@ const BlogPage = () => {
   const [error, setError] = useState(null);  // Added error state
 
   useEffect(() => {
+    document.title = 'Alex Lonon | Blog';
+  }, []);
+
+  useEffect(() => {
     const fetchPosts = async () => {
       try {
         setIsLoading(true);

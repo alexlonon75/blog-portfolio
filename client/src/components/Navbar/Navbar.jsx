@@ -135,8 +135,8 @@ const Navbar = () => {
 
       <NavLinks isOpen={isOpen}>
         <Link to="/">Home</Link>
-        <Link to="/blog">Blog</Link>
         <Link to="/portfolio">Portfolio</Link>
+        <Link to="/blog">Blog</Link>
         <Link to="/about">About</Link>
       </NavLinks>
     </NavContainer>

@@ -1,5 +1,6 @@
 // src/components/About/About.jsx
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 const AboutContainer = styled.section`
   max-width: 900px;
@@ -210,6 +211,10 @@ const ConnectLink = styled.a`
 `;
 
 const About = () => {
+  useEffect(() => {
+    document.title = 'Alex Lonon | About';
+  }, []);
+
   return (
     <AboutContainer>
       <h1>About Alex Lonon</h1>
