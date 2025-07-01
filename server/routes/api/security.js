@@ -1,4 +1,4 @@
-// routes/security.js
+// routes/api/security.js
 const express = require('express');
 const router = express.Router();
 const { UptimeCheck, SSLCheck, SecurityHeaders } = require('../../models/SecurityMetrics');
@@ -94,6 +94,7 @@ router.get('/headers', async (req, res) => {
 // Webhook endpoints for n8n to post data
 router.post('/webhook/uptime', async (req, res) => {
   try {
+    console.log('Received uptime webhook:', req.body);
     const { url, status, responseTime, isUp, errorMessage } = req.body;
     
     const uptimeCheck = new UptimeCheck({
@@ -105,8 +106,10 @@ router.post('/webhook/uptime', async (req, res) => {
     });
     
     await uptimeCheck.save();
+    console.log('Uptime check saved successfully');
     res.json({ success: true, message: 'Uptime check recorded' });
   } catch (error) {
+    console.error('Error saving uptime check:', error);
     res.status(500).json({ error: error.message });
   }
 });

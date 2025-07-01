@@ -6,7 +6,9 @@ const allowedOrigins = [
   'https://alexlonon.com',
   'https://www.alexlonon.com',
   'http://www.alexlonon.com',
-  'http://localhost:3000' // for development
+  'http://localhost:3000', // for development
+  'http://localhost:5678', // for n8n local development
+  null // for server-to-server requests (n8n webhooks)
 ];
 const connectDB = require('./config/db');
 require('dotenv').config();
