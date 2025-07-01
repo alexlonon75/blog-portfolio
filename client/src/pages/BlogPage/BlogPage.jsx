@@ -12,8 +12,11 @@ const BlogPage = () => {
     const fetchPosts = async () => {
       try {
         setIsLoading(true);
-        console.log('Fetching posts...');
-        const response = await fetch(`${API_URL}/api/posts`);  
+        console.log('API_URL being used:', API_URL);
+        console.log('Full URL being fetched:', `${API_URL}/api/posts`);
+        console.log('Environment:', process.env.NODE_ENV);
+        console.log('REACT_APP_API_URL from env:', process.env.REACT_APP_API_URL);
+        const response = await fetch(`${API_URL}/api/posts`);
         console.log('Response:', response);
         
         if (response.ok) {

@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const PostContainer = styled.article`
   margin: 2rem 0;
@@ -43,7 +44,7 @@ function BlogPost({ post }) {
         <h2>{post.title}</h2>
       </PostTitle>
       
-      {post.imageUrl && <PostImage src={post.imageUrl} alt={post.title} />}
+      {post.imageUrl && <PostImage src={getImageUrl(post.imageUrl)} alt={post.title} />}
       
       <div>
         {post.date && (

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { format } from 'date-fns';
+import { getImageUrl } from '../../utils/imageUtils';
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const PostContainer = styled.article`
@@ -43,6 +44,8 @@ function SinglePostPage() {
     const fetchPost = async () => {
       try {
         setIsLoading(true);
+        console.log('SinglePost API_URL:', API_URL);
+        console.log('Fetching post URL:', `${API_URL}/api/posts/${id}`);
         const response = await fetch(`${API_URL}/api/posts/${id}`);
         
         if (!response.ok) {
@@ -81,7 +84,7 @@ function SinglePostPage() {
       
       <h1>{post.title}</h1>
       
-      {post.imageUrl && <PostImage src={post.imageUrl} alt={post.title} />}
+      {post.imageUrl && <PostImage src={getImageUrl(post.imageUrl)} alt={post.title} />}
       
       <div>
         {post.date && (
