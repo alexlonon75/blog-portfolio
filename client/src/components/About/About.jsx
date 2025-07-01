@@ -246,7 +246,7 @@ const About = () => {
           </CommandOutput>
 
           <CommandLine>
-            <span style={{ color: '#e0e0e0' }}>ls -la skills/</span>
+            <span style={{ color: '#e0e0e0' }}>ls -la skills&courses/</span>
           </CommandLine>
           <SkillsGrid>
             <SkillCategory>
