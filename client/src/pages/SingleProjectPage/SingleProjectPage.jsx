@@ -171,7 +171,7 @@ const ErrorMessage = styled.div`
 const projectsData = {
     1: {
       id: 1,
-      title: "Automated Security Monitoring Dashboard",
+      title: "Automated Security Monitoring",
       description: "To follow the creation of this portfolio site, I decided to use my skills in n8n to create an automated way to know if my site ever goes down. I created a workflow that triggers every 5 minutes, sending a GET request to my frontend. I then process this in a js code node to extract the status code and response time. This data is then sent to my database in MongoDB, and if the parameters do not meet the satisfactory conditions, a discord message is sent alerting me.",
       image: "/security-dashboard.png",
       technologies: ["N8N", "Javascript", "HTTP Requests", "MongoDB", "APIs"],
