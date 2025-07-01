@@ -12,6 +12,7 @@ import AboutPage from './pages/AboutPage/AboutPage';
 
 
 import SinglePostPage from './pages/SinglePostPage/SinglePostPage';
+import SingleProjectPage from './pages/SingleProjectPage/SingleProjectPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/post/:id" element={<SinglePostPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/project/:id" element={<SingleProjectPage />} />
             <Route path="/about" element={<AboutPage />} />
 
           </Routes>
