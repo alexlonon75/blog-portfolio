@@ -1,7 +1,7 @@
 // routes/security.js
 const express = require('express');
 const router = express.Router();
-const { UptimeCheck, SSLCheck, SecurityHeaders } = require('../models/SecurityMetrics');
+const { UptimeCheck, SSLCheck, SecurityHeaders } = require('../../models/SecurityMetrics');
 
 // Get uptime statistics
 router.get('/uptime', async (req, res) => {
