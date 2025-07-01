@@ -9,7 +9,6 @@ const allowedOrigins = [
   'http://localhost:3000' // for development
 ];
 const connectDB = require('./config/db');
-const router = express.Router();
 require('dotenv').config();
 
 const app = express();
@@ -33,31 +32,21 @@ app.use('/images', express.static('public/images'));
 
 // Route Handler
 app.get('/', (req, res) => {
-    res.send('API Running');
-});
-router.get('/api/posts/:id', async (req, res) => {
-  try {
-    console.log('Received request for post ID:', req.params.id); // Debug log
-    
-    if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-      return res.status(400).json({ message: 'Invalid post ID format' });
-    }
-
-    const post = await Post.findById(req.params.id);
-    console.log('Found post:', post); // Debug log
-
-    if (!post) {
-      return res.status(404).json({ message: 'Post not found' });
-    }
-
-    res.json(post);
-  } catch (error) {
-    console.error('Server error when fetching post:', error); // Detailed error log
-    res.status(500).json({ 
-      message: 'Server error', 
-      error: error.message  // Include error message in development
+    res.json({
+      message: 'Blog Portfolio API Running',
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
     });
-  }
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({
+      status: 'healthy',
+      mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+      timestamp: new Date().toISOString()
+    });
 });
 
 
@@ -66,9 +55,21 @@ const postRoutes = require('./routes/api/posts');
 app.use('/api/posts', postRoutes);
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URL)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('Error connecting to MongoDB:', err));
+console.log('Attempting to connect to MongoDB...');
+console.log('MongoDB URL exists:', !!process.env.MONGODB_URL);
+console.log('MongoDB URL (first 20 chars):', process.env.MONGODB_URL ? process.env.MONGODB_URL.substring(0, 20) + '...' : 'undefined');
+
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log('✅ Successfully connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('❌ Error connecting to MongoDB:', err.message);
+    console.error('Full error:', err);
+  });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
