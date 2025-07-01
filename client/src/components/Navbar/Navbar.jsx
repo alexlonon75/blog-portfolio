@@ -22,11 +22,6 @@ const NavContainer = styled.nav`
     color: ${({ theme }) => theme.colors.text};
     text-shadow: 0 0 10px ${({ theme }) => theme.colors.primary};
 
-    &::after {
-      content: ' >';
-      color: ${({ theme }) => theme.colors.primary};
-    }
-
     &:hover {
       color: ${({ theme }) => theme.colors.primary};
       transition: ${({ theme }) => theme.transitions.fast};
