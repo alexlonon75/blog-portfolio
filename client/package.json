@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build --maxFileLength 255 --dotfiles true -m \"Deploy React app to Github Pages\""
   },
   "eslintConfig": {
     "extends": [
