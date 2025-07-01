@@ -167,15 +167,8 @@ const ErrorMessage = styled.div`
   font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
-function SingleProjectPage() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [project, setProject] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Mock project data - in a real app, this would come from an API or database
-  const projectsData = {
+// Mock project data - in a real app, this would come from an API or database
+const projectsData = {
     1: {
       id: 1,
       title: "Automated Security Monitoring Dashboard",
@@ -242,6 +235,13 @@ The intelligent alerting system:
       dateCreated: "2024"
     }
   };
+
+function SingleProjectPage() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [project, setProject] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProject = async () => {
