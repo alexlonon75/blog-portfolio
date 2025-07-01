@@ -1,0 +1,108 @@
+// src/pages/SinglePostPage/SinglePostPage.jsx
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { format } from 'date-fns';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+const PostContainer = styled.article`
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+`;
+
+const PostImage = styled.img`
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 1rem 0;
+`;
+
+const BackButton = styled.button`
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: #e0e0e0;
+  }
+`;
+
+function SinglePostPage() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [post, setPost] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${API_URL}/api/posts/${id}`);
+        
+        if (!response.ok) {
+          throw new Error('Post not found');
+        }
+        
+        const data = await response.json();
+        setPost(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [id]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return (
+    <PostContainer>
+      <BackButton onClick={() => navigate(-1)}>← Back</BackButton>
+      <div>Error: {error}</div>
+    </PostContainer>
+  );
+  if (!post) return (
+    <PostContainer>
+      <BackButton onClick={() => navigate(-1)}>← Back</BackButton>
+      <div>Post not found</div>
+    </PostContainer>
+  );
+
+  return (
+    <PostContainer>
+      <BackButton onClick={() => navigate(-1)}>← Back</BackButton>
+      
+      <h1>{post.title}</h1>
+      
+      {post.imageUrl && <PostImage src={post.imageUrl} alt={post.title} />}
+      
+      <div>
+        {post.date && (
+          <p>{format(new Date(post.date), 'MMMM dd, yyyy')}</p>
+        )}
+        {post.tags && (
+          <div>
+            {post.tags.map(tag => (
+              <span key={tag} style={{ marginRight: '0.5rem' }}>#{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+      
+      <div style={{ marginTop: '2rem' }}>{post.content}</div>
+      
+      <footer style={{ marginTop: '2rem' }}>
+        <p>Written by: {post.author}</p>
+      </footer>
+    </PostContainer>
+  );
+}
+
+export default SinglePostPage;
