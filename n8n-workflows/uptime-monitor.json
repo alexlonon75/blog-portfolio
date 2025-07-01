@@ -1,0 +1,132 @@
+{
+  "name": "Website Uptime Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://alexlonon.com",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "name": "Check Website",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Calculate response time and determine if site is up\nconst startTime = new Date($input.first().json.requestStartTime);\nconst endTime = new Date();\nconst responseTime = endTime - startTime;\n\nconst isUp = $input.first().json.statusCode >= 200 && $input.first().json.statusCode < 400;\n\nreturn {\n  url: 'https://alexlonon.com',\n  status: $input.first().json.statusCode || 0,\n  responseTime: responseTime,\n  isUp: isUp,\n  errorMessage: isUp ? null : 'Site is down or unreachable',\n  timestamp: new Date().toISOString()\n};"
+      },
+      "name": "Process Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:5000/api/security/webhook/uptime",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "name": "Send to Database",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.isUp }}",
+              "value2": false
+            }
+          ]
+        }
+      },
+      "name": "If Site Down",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [680, 500]
+    },
+    {
+      "parameters": {
+        "message": "🚨 ALERT: Website alexlonon.com is DOWN!\n\nStatus Code: {{ $json.status }}\nError: {{ $json.errorMessage }}\nTime: {{ $json.timestamp }}",
+        "additionalFields": {}
+      },
+      "name": "Send Alert",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 1,
+      "position": [900, 500]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Check Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Website": {
+      "main": [
+        [
+          {
+            "node": "Process Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Response": {
+      "main": [
+        [
+          {
+            "node": "Send to Database",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If Site Down",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Site Down": {
+      "main": [
+        [
+          {
+            "node": "Send Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
