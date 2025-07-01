@@ -6,7 +6,6 @@ import { getImageUrl } from '../../utils/imageUtils';
 
 const PostContainer = styled.article`
   margin: 2rem 0;
-  padding: 1.5rem;
   background: ${({ theme }) => theme.colors.surface};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 8px;
@@ -39,6 +38,14 @@ const PostContainer = styled.article`
   }
 `;
 
+const PostLink = styled(Link)`
+  display: block;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+`;
+
 const PostImage = styled.img`
   width: 100%;
   height: 300px;
@@ -54,23 +61,14 @@ const PostImage = styled.img`
   }
 `;
 
-const PostTitle = styled(Link)`
-  text-decoration: none;
+const PostTitle = styled.h2`
+  margin: 0.5rem 0;
+  font-family: ${({ theme }) => theme.fonts.primary};
   color: ${({ theme }) => theme.colors.text};
 
-  &:hover {
+  &::before {
+    content: '# ';
     color: ${({ theme }) => theme.colors.primary};
-  }
-
-  h2 {
-    margin: 0.5rem 0;
-    font-family: ${({ theme }) => theme.fonts.primary};
-    color: ${({ theme }) => theme.colors.text};
-
-    &::before {
-      content: '# ';
-      color: ${({ theme }) => theme.colors.primary};
-    }
   }
 `;
 
@@ -131,28 +129,28 @@ function BlogPost({ post }) {
 
   return (
     <PostContainer>
-      <PostTitle to={`/post/${post._id}`}>
-        <h2>{post.title}</h2>
-      </PostTitle>
+      <PostLink to={`/post/${post._id}`}>
+        <PostTitle>{post.title}</PostTitle>
 
-      {post.imageUrl && <PostImage src={getImageUrl(post.imageUrl)} alt={post.title} />}
+        {post.imageUrl && <PostImage src={getImageUrl(post.imageUrl)} alt={post.title} />}
 
-      <PostMeta>
-        {post.date && (
-          <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
+        <PostMeta>
+          {post.date && (
+            <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
+          )}
+          <PostAuthor>{post.author}</PostAuthor>
+        </PostMeta>
+
+        {post.tags && (
+          <TagsContainer>
+            {post.tags.map(tag => (
+              <span key={tag}>#{tag}</span>
+            ))}
+          </TagsContainer>
         )}
-        <PostAuthor>{post.author}</PostAuthor>
-      </PostMeta>
 
-      {post.tags && (
-        <TagsContainer>
-          {post.tags.map(tag => (
-            <span key={tag}>#{tag}</span>
-          ))}
-        </TagsContainer>
-      )}
-
-      <PostExcerpt>{post.content.substring(0, 200)}...</PostExcerpt>
+        <PostExcerpt>{post.content.substring(0, 200)}...</PostExcerpt>
+      </PostLink>
     </PostContainer>
   );
 }

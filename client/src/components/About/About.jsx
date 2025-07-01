@@ -202,8 +202,7 @@ const About = () => {
             </p>
             <p>
               When I'm not working on cybersecurity projects or coding, you'll find me exploring
-              new technologies, contributing to open source projects, and sharing knowledge
-              through technical writing and blog posts.
+              new technologies, running/ enjoying the outdoors, playing video games,and cooking.
             </p>
           </CommandOutput>
 
@@ -214,33 +213,33 @@ const About = () => {
             <SkillCategory>
               <h4>Cybersecurity & AI</h4>
               <ul>
-                <li>Digital Forensics (CSCI 355)</li>
-                <li>Network Security (CSCI 570)</li>
-                <li>Computer Security (CSCI 455)</li>
-                <li>Applied Cybersecurity (CSCI 575)</li>
-                <li>Applied Cryptography (CSCI 456)</li>
+                <li>Digital Forensics</li>
+                <li>Network Security</li>
+                <li>Computer Security</li>
+                <li>Applied Cybersecurity</li>
+                <li>Applied Cryptography</li>
                 <li>AI & Cybersecurity</li>
               </ul>
             </SkillCategory>
             <SkillCategory>
               <h4>Programming & Development</h4>
               <ul>
-                <li>Python Programming (CSCI 236)</li>
+                <li>Python Programming</li>
                 <li>Visual C# Programming</li>
                 <li>Java Programming</li>
                 <li>Data Structures & Algorithms</li>
-                <li>Software Engineering (CSCI 540)</li>
+                <li>Software Engineering</li>
                 <li>React.js & JavaScript</li>
               </ul>
             </SkillCategory>
             <SkillCategory>
               <h4>Systems & Web Applications</h4>
               <ul>
-                <li>Operating Systems (CSCI 511)</li>
-                <li>Computer Networks (CSCI 412)</li>
-                <li>Database System Design (CSCI 520)</li>
-                <li>E-Business Web Application Development (CSCI 450)</li>
-                <li>Computer Organization (CSCI 210)</li>
+                <li>Operating Systems</li>
+                <li>Computer Networks</li>
+                <li>Database System Design</li>
+                <li>E-Business Web Application Development</li>
+                <li>Computer Organization</li>
               </ul>
             </SkillCategory>
             <SkillCategory>
@@ -249,7 +248,7 @@ const About = () => {
                 <li>Generative AI</li>
                 <li>Professional Practices in Information Technology</li>
                 <li>Linux (Arch, Kali)</li>
-                <li>Discrete Mathematics (MATH 174)</li>
+                <li>Discrete Mathematics</li>
                 <li>Git & GitHub</li>
               </ul>
             </SkillCategory>
