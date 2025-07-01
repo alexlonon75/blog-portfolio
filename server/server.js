@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const allowedOrigins = [
+  'https://alexlonon.com',
+  'https://www.alexlonon.com',
   'http://www.alexlonon.com',
   'http://localhost:3000' // for development
 ];

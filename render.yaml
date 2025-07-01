@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: blog-portfolio-api
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URL
+        fromDatabase:
+          name: blog-portfolio-db
+          property: connectionString
+    autoDeploy: false
+
+databases:
+  - name: blog-portfolio-db
+    databaseName: blog_portfolio
+    user: blog_user
