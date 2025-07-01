@@ -205,7 +205,7 @@ const HomePage = () => {
           {showContent && (
             <>
               <CommandOutput>
-                Alex Lonon - Cybersecurity Student & Life-Long Learner
+                Cybersecurity Student & Life-Long Learner
               </CommandOutput>
 
               <TerminalLine prompt=">">
@@ -214,20 +214,20 @@ const HomePage = () => {
 
               <SkillsGrid>
                 <SkillCard>
-                  <h3>🔒 Cybersecurity</h3>
-                  <p>Penetration Testing, Vulnerability Assessment, Security Architecture</p>
+                  <h3>🔒 Cybersecurity & AI</h3>
+                  <p>Digital Forensics, Network Security, Applied Cryptography, AI & Cybersecurity</p>
                 </SkillCard>
                 <SkillCard>
-                  <h3>💻 Development</h3>
-                  <p>Full-Stack Web Development, React, Node.js, Python</p>
+                  <h3>💻 Programming</h3>
+                  <p>Java, C#, Python, Data Structures & Algorithms, Software Engineering</p>
                 </SkillCard>
                 <SkillCard>
-                  <h3>🎨 Design</h3>
-                  <p>UI/UX Design, Responsive Web Design, User Experience</p>
+                  <h3>�️ Systems & Web Development</h3>
+                  <p>Operating Systems, Database Systems, E-Business Web Applications, Generative AI</p>
                 </SkillCard>
                 <SkillCard>
-                  <h3>☁️ Cloud & DevOps</h3>
-                  <p>AWS, Docker, CI/CD, Infrastructure as Code</p>
+                  <h3>🐧 Linux & Professional Skills</h3>
+                  <p>Arch Linux, Kali Linux, Professional Practices in Info, React.js</p>
                 </SkillCard>
               </SkillsGrid>
 

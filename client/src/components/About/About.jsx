@@ -196,14 +196,14 @@ const About = () => {
           </CommandLine>
           <CommandOutput>
             <p>
-              Cybersecurity professional and full-stack developer with a passion for building secure,
-              scalable applications. I specialize in penetration testing, vulnerability assessment,
-              and developing robust web solutions.
+              Senior cybersecurity student at USC Upstate with a passion for building secure,
+              scalable applications. Currently developing expertise in digital forensics, network security,
+              applied cryptography, and secure software development through hands-on coursework.
             </p>
             <p>
-              When I'm not hunting for vulnerabilities or writing code, you'll find me exploring
+              When I'm not working on cybersecurity projects or coding, you'll find me exploring
               new technologies, contributing to open source projects, and sharing knowledge
-              through technical writing.
+              through technical writing and blog posts.
             </p>
           </CommandOutput>
 
@@ -212,54 +212,62 @@ const About = () => {
           </CommandLine>
           <SkillsGrid>
             <SkillCategory>
-              <h4>Security</h4>
+              <h4>Cybersecurity & AI</h4>
               <ul>
-                <li>Penetration Testing</li>
-                <li>Vulnerability Assessment</li>
-                <li>Security Architecture</li>
-                <li>Incident Response</li>
+                <li>Digital Forensics (CSCI 355)</li>
+                <li>Network Security (CSCI 570)</li>
+                <li>Computer Security (CSCI 455)</li>
+                <li>Applied Cybersecurity (CSCI 575)</li>
+                <li>Applied Cryptography (CSCI 456)</li>
+                <li>AI & Cybersecurity</li>
               </ul>
             </SkillCategory>
             <SkillCategory>
-              <h4>Development</h4>
+              <h4>Programming & Development</h4>
               <ul>
-                <li>JavaScript/TypeScript</li>
-                <li>React & Node.js</li>
-                <li>Python</li>
-                <li>MongoDB & SQL</li>
+                <li>Python Programming (CSCI 236)</li>
+                <li>Visual C# Programming</li>
+                <li>Java Programming</li>
+                <li>Data Structures & Algorithms</li>
+                <li>Software Engineering (CSCI 540)</li>
+                <li>React.js & JavaScript</li>
               </ul>
             </SkillCategory>
             <SkillCategory>
-              <h4>DevOps & Cloud</h4>
+              <h4>Systems & Web Applications</h4>
               <ul>
-                <li>AWS/Azure</li>
-                <li>Docker & Kubernetes</li>
-                <li>CI/CD Pipelines</li>
-                <li>Infrastructure as Code</li>
+                <li>Operating Systems (CSCI 511)</li>
+                <li>Computer Networks (CSCI 412)</li>
+                <li>Database System Design (CSCI 520)</li>
+                <li>E-Business Web Application Development (CSCI 450)</li>
+                <li>Computer Organization (CSCI 210)</li>
               </ul>
             </SkillCategory>
             <SkillCategory>
-              <h4>Tools & Frameworks</h4>
+              <h4>Emerging Tech & Professional Skills</h4>
               <ul>
-                <li>Burp Suite</li>
-                <li>Metasploit</li>
+                <li>Generative AI</li>
+                <li>Professional Practices in Information Technology</li>
+                <li>Linux (Arch, Kali)</li>
+                <li>Discrete Mathematics (MATH 174)</li>
                 <li>Git & GitHub</li>
-                <li>Linux Administration</li>
               </ul>
             </SkillCategory>
           </SkillsGrid>
 
           <CommandLine>
-            <span style={{ color: '#e0e0e0' }}>cat experience.log</span>
+            <span style={{ color: '#e0e0e0' }}>cat academic_projects.log</span>
           </CommandLine>
           <CommandOutput>
             <p>
-              <strong>Senior Security Analyst</strong> - Building secure systems and conducting
-              comprehensive security assessments for enterprise clients.
+              <strong>Cybersecurity Coursework</strong> - Completing comprehensive cybersecurity program
+              including digital forensics investigations, network security analysis, and applied
+              cryptography implementations through hands-on lab work and projects.
             </p>
             <p>
-              <strong>Full-Stack Developer</strong> - Developing modern web applications with
-              a focus on security best practices and user experience.
+              <strong>Software Development Projects</strong> - Building secure web applications using
+              modern frameworks like React.js, implementing security best practices, and developing
+              portfolio projects that demonstrate both technical and security skills.
             </p>
           </CommandOutput>
         </TerminalContent>
