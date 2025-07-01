@@ -8,10 +8,10 @@ export const theme = {
     surface: '#1e1e1e',
     surfaceHover: '#252525',
 
-    // Terminal green accents
-    primary: '#00ff41',
-    primaryDark: '#00cc33',
-    primaryLight: '#66ff80',
+    // Subdued pale blue accents
+    primary: '#5c9bd5',
+    primaryDark: '#4a7ba7',
+    primaryLight: '#7bb3e3',
 
     // Text colors
     text: '#e0e0e0',
@@ -24,7 +24,7 @@ export const theme = {
     accent: '#ff6b35',
     warning: '#ffaa00',
     error: '#ff4444',
-    success: '#00ff41',
+    success: '#5c9bd5',
     successLight: '#1a3d1a',
 
     // Border colors
@@ -48,10 +48,10 @@ export const theme = {
   },
   maxWidth: '1200px',
   shadows: {
-    small: '0 2px 4px rgba(0, 255, 65, 0.1)',
-    medium: '0 4px 8px rgba(0, 255, 65, 0.15)',
-    large: '0 8px 16px rgba(0, 255, 65, 0.2)',
-    glow: '0 0 20px rgba(0, 255, 65, 0.3)'
+    small: '0 2px 4px rgba(92, 155, 213, 0.1)',
+    medium: '0 4px 8px rgba(92, 155, 213, 0.15)',
+    large: '0 8px 16px rgba(92, 155, 213, 0.2)',
+    glow: '0 0 20px rgba(92, 155, 213, 0.3)'
   },
   transitions: {
     fast: '0.15s ease',

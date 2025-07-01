@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.background};
     background-image:
-      radial-gradient(circle at 25% 25%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 25% 25%, rgba(92, 155, 213, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 75% 75%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
     min-height: 100vh;
     transition: ${({ theme }) => theme.transitions.normal};

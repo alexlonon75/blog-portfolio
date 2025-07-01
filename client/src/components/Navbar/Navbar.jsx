@@ -22,8 +22,8 @@ const NavContainer = styled.nav`
     color: ${({ theme }) => theme.colors.text};
     text-shadow: 0 0 10px ${({ theme }) => theme.colors.primary};
 
-    &::before {
-      content: '$ ';
+    &::after {
+      content: ' >';
       color: ${({ theme }) => theme.colors.primary};
     }
 
@@ -143,7 +143,6 @@ const Navbar = () => {
         <Link to="/blog">Blog</Link>
         <Link to="/portfolio">Portfolio</Link>
         <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
       </NavLinks>
     </NavContainer>
   );

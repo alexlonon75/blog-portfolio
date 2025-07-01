@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage/HomePage';
 import BlogPage from './pages/BlogPage/BlogPage';
 import PortfolioPage from './pages/PortfolioPage/PortfolioPage';
 import AboutPage from './pages/AboutPage/AboutPage';
-import ContactPage from './pages/ContactPage/ContactPage';
+
 
 import SinglePostPage from './pages/SinglePostPage/SinglePostPage';
 
@@ -25,7 +25,7 @@ function App() {
             <Route path="/post/:id" element={<SinglePostPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
+
           </Routes>
         </Layout>
       </BrowserRouter>

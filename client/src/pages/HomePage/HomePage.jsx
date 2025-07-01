@@ -35,23 +35,50 @@ const TerminalHeader = styled.div`
   padding: 0.75rem 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   display: flex;
+  justify-content: space-between;
   align-items: center;
+`;
+
+const WindowControls = styled.div`
+  display: flex;
   gap: 0.5rem;
+`;
 
-  &::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ff5f56;
-    box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f;
+const WindowButton = styled.div`
+  width: 12px;
+  height: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: ${({ theme }) => theme.colors.textMuted};
+
+  &:first-child {
+    background: ${({ theme }) => theme.colors.surface};
+    &:hover { background: #ff4444; }
+    &::after { content: '×'; }
   }
 
-  span {
-    font-family: ${({ theme }) => theme.fonts.primary};
-    color: ${({ theme }) => theme.colors.textSecondary};
-    margin-left: 1rem;
+  &:nth-child(2) {
+    background: ${({ theme }) => theme.colors.surface};
+    &:hover { background: #ffaa00; }
+    &::after { content: '□'; }
   }
+
+  &:last-child {
+    background: ${({ theme }) => theme.colors.surface};
+    &:hover { background: #00aa00; }
+    &::after { content: '_'; }
+  }
+`;
+
+const TerminalTitle = styled.span`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  flex: 1;
+  text-align: center;
 `;
 
 const TerminalContent = styled.div`
@@ -66,7 +93,7 @@ const TerminalLine = styled.div`
   align-items: center;
 
   &::before {
-    content: '${props => props.prompt || "$"}';
+    content: '${props => props.prompt || ">"}';
     color: ${({ theme }) => theme.colors.primary};
     margin-right: 0.5rem;
     font-weight: bold;
@@ -162,20 +189,26 @@ const HomePage = () => {
     <HomeContainer>
       <TerminalWindow>
         <TerminalHeader>
-          <span>alex@portfolio:~</span>
+          <WindowControls>
+            <WindowButton />
+            <WindowButton />
+            <WindowButton />
+          </WindowControls>
+          <TerminalTitle>alex@portfolio:~</TerminalTitle>
+          <div style={{ width: '60px' }} /> {/* Spacer for centering */}
         </TerminalHeader>
         <TerminalContent>
-          <TerminalLine prompt="$">
+          <TerminalLine prompt=">">
             <TypedText>whoami</TypedText>
           </TerminalLine>
 
           {showContent && (
             <>
               <CommandOutput>
-                Alex Lonon - Cybersecurity Professional & Full-Stack Developer
+                Alex Lonon - Cybersecurity Student & Life-Long Learner
               </CommandOutput>
 
-              <TerminalLine prompt="$">
+              <TerminalLine prompt=">">
                 <span style={{ color: '#e0e0e0' }}>cat skills.txt</span>
               </TerminalLine>
 
@@ -198,7 +231,7 @@ const HomePage = () => {
                 </SkillCard>
               </SkillsGrid>
 
-              <TerminalLine prompt="$">
+              <TerminalLine prompt=">">
                 <span style={{ color: '#e0e0e0' }}>ls -la projects/</span>
               </TerminalLine>
 
@@ -209,8 +242,8 @@ const HomePage = () => {
                 <CTAButton to="/blog">
                   ./read_blog.sh
                 </CTAButton>
-                <CTAButton to="/contact">
-                  ./contact_me.sh
+                <CTAButton to="/about">
+                  ./about_me.sh
                 </CTAButton>
               </CTAButtons>
             </>
