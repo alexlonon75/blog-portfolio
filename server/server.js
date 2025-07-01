@@ -52,9 +52,13 @@ app.get('/health', (req, res) => {
 });
 
 
-// Import and use post routes 
+// Import and use post routes
 const postRoutes = require('./routes/api/posts');
 app.use('/api/posts', postRoutes);
+
+// Import and use security routes
+const securityRoutes = require('./routes/api/security');
+app.use('/api/security', securityRoutes);
 
 // MongoDB connection
 console.log('Attempting to connect to MongoDB...');
