@@ -14,6 +14,7 @@ const TerminalSection = styled.div`
   border-radius: 8px;
   margin: 2rem 0;
   overflow: hidden;
+  box-shadow: ${({ theme }) => theme.shadows.large};
 `;
 
 const TerminalHeader = styled.div`
@@ -21,23 +22,50 @@ const TerminalHeader = styled.div`
   padding: 0.75rem 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   display: flex;
+  justify-content: space-between;
   align-items: center;
+`;
+
+const WindowControls = styled.div`
+  display: flex;
   gap: 0.5rem;
+`;
 
-  &::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ff5f56;
-    box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f;
+const WindowButton = styled.div`
+  width: 12px;
+  height: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: ${({ theme }) => theme.colors.textMuted};
+
+  &:first-child {
+    background: ${({ theme }) => theme.colors.surface};
+    &:hover { background: #ff4444; }
+    &::after { content: '×'; }
   }
 
-  span {
-    font-family: ${({ theme }) => theme.fonts.primary};
-    color: ${({ theme }) => theme.colors.textSecondary};
-    margin-left: 1rem;
+  &:nth-child(2) {
+    background: ${({ theme }) => theme.colors.surface};
+    &:hover { background: #ffaa00; }
+    &::after { content: '□'; }
   }
+
+  &:last-child {
+    background: ${({ theme }) => theme.colors.surface};
+    &:hover { background: #00aa00; }
+    &::after { content: '_'; }
+  }
+`;
+
+const TerminalTitle = styled.span`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  flex: 1;
+  text-align: center;
 `;
 
 const TerminalContent = styled.div`
@@ -188,7 +216,13 @@ const About = () => {
 
       <TerminalSection>
         <TerminalHeader>
-          <span>alex@about:~</span>
+          <WindowControls>
+            <WindowButton />
+            <WindowButton />
+            <WindowButton />
+          </WindowControls>
+          <TerminalTitle>alex@about:~</TerminalTitle>
+          <div style={{ width: '60px' }} /> {/* Spacer for centering */}
         </TerminalHeader>
         <TerminalContent>
           <CommandLine>
