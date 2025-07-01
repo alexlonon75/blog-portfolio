@@ -7,60 +7,152 @@ import { getImageUrl } from '../../utils/imageUtils';
 const PostContainer = styled.article`
   margin: 2rem 0;
   padding: 1.5rem;
+  background: ${({ theme }) => theme.colors.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: ${({ theme }) => theme.transitions.normal};
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+      ${({ theme }) => theme.colors.primary},
+      ${({ theme }) => theme.colors.accent}
+    );
+    opacity: 0;
+    transition: ${({ theme }) => theme.transitions.fast};
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: ${({ theme }) => theme.shadows.glow};
+
+    &::before {
+      opacity: 1;
+    }
+  }
 `;
 
 const PostImage = styled.img`
   width: 100%;
   height: 300px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  margin: 1rem 0;
+  transition: ${({ theme }) => theme.transitions.fast};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: ${({ theme }) => theme.shadows.medium};
+  }
 `;
 
-// Add this styled component definition
 const PostTitle = styled(Link)`
   text-decoration: none;
-  color: inherit;
-  
+  color: ${({ theme }) => theme.colors.text};
+
   &:hover {
-    color: #0066cc;
+    color: ${({ theme }) => theme.colors.primary};
   }
 
   h2 {
     margin: 0.5rem 0;
+    font-family: ${({ theme }) => theme.fonts.primary};
+    color: ${({ theme }) => theme.colors.text};
+
+    &::before {
+      content: '# ';
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+`;
+
+const PostMeta = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.textSecondary};
+
+  span {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+const TagsContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+
+  span {
+    background: ${({ theme }) => theme.colors.backgroundSecondary};
+    color: ${({ theme }) => theme.colors.primary};
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: ${({ theme }) => theme.fonts.primary};
+    font-size: 0.8rem;
+    border: 1px solid ${({ theme }) => theme.colors.border};
+
+    &:hover {
+      background: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.textInverse};
+    }
+  }
+`;
+
+const PostExcerpt = styled.p`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  line-height: 1.6;
+  margin: 1rem 0;
+`;
+
+const PostAuthor = styled.small`
+  color: ${({ theme }) => theme.colors.textMuted};
+  font-family: ${({ theme }) => theme.fonts.primary};
+
+  &::before {
+    content: '~/';
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
 function BlogPost({ post }) {
   if (!post) return null;
 
-  //console.log('Post data:', post);  // Add this to see the post data
-  //console.log('Image URL:', post.imageUrl);  // Add this to see the image URL
-
   return (
     <PostContainer>
       <PostTitle to={`/post/${post._id}`}>
         <h2>{post.title}</h2>
       </PostTitle>
-      
+
       {post.imageUrl && <PostImage src={getImageUrl(post.imageUrl)} alt={post.title} />}
-      
-      <div>
+
+      <PostMeta>
         {post.date && (
           <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
         )}
-        {post.tags && (
-          <div>
-            {post.tags.map(tag => (
-              <span key={tag}>#{tag}</span>
-            ))}
-          </div>
-        )}
-      </div>
-      
-      <p>{post.content.substring(0, 200)}...</p>
-      <small>By: {post.author}</small>
+        <PostAuthor>{post.author}</PostAuthor>
+      </PostMeta>
+
+      {post.tags && (
+        <TagsContainer>
+          {post.tags.map(tag => (
+            <span key={tag}>#{tag}</span>
+          ))}
+        </TagsContainer>
+      )}
+
+      <PostExcerpt>{post.content.substring(0, 200)}...</PostExcerpt>
     </PostContainer>
   );
 }
