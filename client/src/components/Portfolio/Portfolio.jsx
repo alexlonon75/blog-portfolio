@@ -166,7 +166,7 @@ const Portfolio = () => {
   }, []);
 
   if (isLoading) {
-    return <LoadingMessage>Loading projects...</LoadingMessage>;
+    return <LoadingMessage></LoadingMessage>;
   }
 
   if (error) {
