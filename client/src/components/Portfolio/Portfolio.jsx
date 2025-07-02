@@ -113,15 +113,35 @@ const TechnologiesContainer = styled.div`
 const LoadingMessage = styled.div`
   text-align: center;
   padding: 2rem;
-  color: ${({ theme }) => theme.colors.text};
-  font-family: ${({ theme }) => theme.fonts.mono};
+  font-family: ${({ theme }) => theme.fonts.primary};
+  color: ${({ theme }) => theme.colors.primary};
+
+  &::before {
+    content: 'Loading';
+    animation: dots 1.5s infinite;
+  }
+
+  @keyframes dots {
+    0%, 20% { content: 'Loading'; }
+    40% { content: 'Loading.'; }
+    60% { content: 'Loading..'; }
+    80%, 100% { content: 'Loading...'; }
+  }
 `;
 
 const ErrorMessage = styled.div`
   text-align: center;
   padding: 2rem;
-  color: ${({ theme }) => theme.colors.error || '#ff6b6b'};
-  font-family: ${({ theme }) => theme.fonts.mono};
+  color: ${({ theme }) => theme.colors.error};
+  font-family: ${({ theme }) => theme.fonts.primary};
+  background: ${({ theme }) => theme.colors.surface};
+  border: 1px solid ${({ theme }) => theme.colors.error};
+  border-radius: 8px;
+  margin: 2rem 0;
+
+  &::before {
+    content: '❌ ';
+  }
 `;
 
 const Portfolio = () => {
