@@ -1,6 +1,7 @@
 // src/components/Portfolio/Portfolio.jsx
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const PortfolioGrid = styled.div`
   display: grid;
@@ -115,7 +116,7 @@ const Portfolio = ({ projects }) => {
           <ProjectLink to={`/project/${project._id || project.id}`}>
             <ProjectTitle>{project.title}</ProjectTitle>
 
-            {project.imageUrl && <ProjectImage src={project.imageUrl} alt={project.title} />}
+            {project.imageUrl && <ProjectImage src={getImageUrl(project.imageUrl)} alt={project.title} />}
 
             <TechnologiesContainer>
               {project.technologies && project.technologies.map(tech => (

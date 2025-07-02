@@ -57,7 +57,7 @@ The intelligent alerting system:
 - Performance threshold customization
 - Integration with additional monitoring services`,
   preview: "Real-time monitoring system with automated alerts and dashboard visualization. Built with n8n workflows, MongoDB storage, and Discord notifications for comprehensive website uptime monitoring.",
-  imageUrl: "/security-dashboard.png",
+  imageUrl: "security-dashboard.png",
   technologies: ["N8N", "Javascript", "HTTP Requests", "MongoDB", "APIs"],
   links: [
     { 

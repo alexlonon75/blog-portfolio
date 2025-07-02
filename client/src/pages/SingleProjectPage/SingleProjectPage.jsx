@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { api } from '../../services/api';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const ProjectContainer = styled.article`
   max-width: 1000px;
@@ -228,7 +229,7 @@ function SingleProjectPage() {
       
       <ProjectTitle>{project.title}</ProjectTitle>
       
-      {project.imageUrl && <ProjectImage src={project.imageUrl} alt={project.title} />}
+      {project.imageUrl && <ProjectImage src={getImageUrl(project.imageUrl)} alt={project.title} />}
       
       <ProjectMeta>
         <div>
