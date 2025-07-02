@@ -1,8 +1,6 @@
 // src/components/Portfolio/Portfolio.jsx
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { api } from '../../services/api';
 
 const PortfolioGrid = styled.div`
   display: grid;
@@ -109,74 +107,7 @@ const TechnologiesContainer = styled.div`
   }
 `;
 
-const LoadingMessage = styled.div`
-  text-align: center;
-  padding: 2rem;
-  font-family: ${({ theme }) => theme.fonts.primary};
-  color: ${({ theme }) => theme.colors.primary};
-
-  &::before {
-    content: 'Loading';
-    animation: dots 1.5s infinite;
-  }
-
-  @keyframes dots {
-    0%, 20% { content: 'Loading'; }
-    40% { content: 'Loading.'; }
-    60% { content: 'Loading..'; }
-    80%, 100% { content: 'Loading...'; }
-  }
-`;
-
-const ErrorMessage = styled.div`
-  text-align: center;
-  padding: 2rem;
-  color: ${({ theme }) => theme.colors.error};
-  font-family: ${({ theme }) => theme.fonts.primary};
-  background: ${({ theme }) => theme.colors.surface};
-  border: 1px solid ${({ theme }) => theme.colors.error};
-  border-radius: 8px;
-  margin: 2rem 0;
-
-  &::before {
-    content: '❌ ';
-  }
-`;
-
-const Portfolio = () => {
-  const [projects, setProjects] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setIsLoading(true);
-        const data = await api.getProjects();
-        setProjects(data);
-      } catch (err) {
-        console.error('Error fetching projects:', err);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  if (isLoading) {
-    return <LoadingMessage></LoadingMessage>;
-  }
-
-  if (error) {
-    return <ErrorMessage>Error loading projects: {error}</ErrorMessage>;
-  }
-
-  if (projects.length === 0) {
-    return <ErrorMessage>No projects found.</ErrorMessage>;
-  }
-
+const Portfolio = ({ projects }) => {
   return (
     <PortfolioGrid>
       {projects.map(project => (
