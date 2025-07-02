@@ -10,22 +10,12 @@ const Main = styled.main`
   flex-direction: column;
 `;
 
-const ContentWrapper = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: ${({ theme }) => theme.maxWidth};
-  margin: 0 auto;
-  padding: 2rem;
-`;
-
 const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
       <Main>
-        <ContentWrapper>
-          {children}
-        </ContentWrapper>
+        {children}
       </Main>
       <Footer />
     </>

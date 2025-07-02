@@ -1,6 +1,8 @@
 // pages/PortfolioPage/PortfolioPage.jsx
 import { useEffect } from 'react';
 import Portfolio from '../../components/Portfolio/Portfolio';
+import PageContainer from '../../components/common/PageContainer';
+import PageHeader from '../../components/common/PageHeader';
 
 const PortfolioPage = () => {
   useEffect(() => {
@@ -8,10 +10,10 @@ const PortfolioPage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>My Work</h1>
+    <PageContainer>
+      <PageHeader title="My Work" />
       <Portfolio />
-    </div>
+    </PageContainer>
   );
 };
 

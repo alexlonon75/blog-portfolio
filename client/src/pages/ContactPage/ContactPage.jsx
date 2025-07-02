@@ -1,12 +1,14 @@
 // pages/ContactPage/ContactPage.jsx
 import Contact from '../../components/Contact/Contact';
+import PageContainer from '../../components/common/PageContainer';
+import PageHeader from '../../components/common/PageHeader';
 
 const ContactPage = () => {
   return (
-    <div>
-      <h1>Get in Touch</h1>
+    <PageContainer>
+      <PageHeader title="Get in Touch" />
       <Contact />
-    </div>
+    </PageContainer>
   );
 };
 

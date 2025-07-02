@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const ContactForm = styled.form`
   max-width: 600px;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 2rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 `;

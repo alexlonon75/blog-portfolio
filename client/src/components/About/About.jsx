@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import { useEffect } from 'react';
 
 const AboutContainer = styled.section`
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  min-height: 100vh;
+  /* Container styling handled by PageContainer */
 `;
 
 const TerminalSection = styled.div`
@@ -217,8 +214,6 @@ const About = () => {
 
   return (
     <AboutContainer>
-      <h1>About Alex Lonon</h1>
-
       <TerminalSection>
         <TerminalHeader>
           <WindowControls>

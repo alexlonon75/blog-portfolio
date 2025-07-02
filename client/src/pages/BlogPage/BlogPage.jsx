@@ -2,27 +2,9 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BlogPost from '../../components/BlogPost/BlogPost';
+import PageContainer from '../../components/common/PageContainer';
+import PageHeader from '../../components/common/PageHeader';
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-
-const BlogContainer = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  min-height: 100vh;
-
-  h1 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-family: ${({ theme }) => theme.fonts.primary};
-    color: ${({ theme }) => theme.colors.text};
-    font-size: 2.5rem;
-
-    &::before {
-      content: '> ';
-      color: ${({ theme }) => theme.colors.primary};
-    }
-  }
-`;
 
 const LoadingMessage = styled.div`
   text-align: center;
@@ -102,8 +84,8 @@ const BlogPage = () => {
   console.log('Error state:', error);
 
   return (
-    <BlogContainer>
-      <h1>Blog Posts</h1>
+    <PageContainer>
+      <PageHeader title="Blog Posts" />
       {isLoading ? (
         <LoadingMessage />
       ) : error ? (
@@ -115,7 +97,7 @@ const BlogPage = () => {
       ) : (
         <ErrorMessage>No posts found. Please check if the backend server is running.</ErrorMessage>
       )}
-    </BlogContainer>
+    </PageContainer>
   );
 };
 
