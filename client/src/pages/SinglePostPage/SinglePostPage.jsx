@@ -98,7 +98,7 @@ function SinglePostPage() {
 
   return (
     <PostContainer>
-      <BackButton onClick={() => navigate(-1)}>← Back</BackButton>
+      <BackButton onClick={() => navigate(-1)}>Back to Blog</BackButton>
       
       <h1>{post.title}</h1>
       
