@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
 `;
 
