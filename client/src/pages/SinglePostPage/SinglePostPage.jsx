@@ -21,15 +21,25 @@ const PostImage = styled.img`
 `;
 
 const BackButton = styled.button`
-  padding: 0.5rem 1rem;
-  margin-bottom: 1rem;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 2rem;
   cursor: pointer;
-  background-color: #f0f0f0;
-  border: none;
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 4px;
+  font-family: ${({ theme }) => theme.fonts.primary};
+  transition: ${({ theme }) => theme.transitions.fast};
   
   &:hover {
-    background-color: #e0e0e0;
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.textInverse};
+    border-color: ${({ theme }) => theme.colors.primary};
+  }
+
+  &::before {
+    content: '← ';
+    margin-right: 0.5rem;
   }
 `;
 
